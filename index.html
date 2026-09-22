@@ -1,0 +1,495 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NOIRÉ Studio – Luxury Architecture & Interior Design</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-black:#0a0a0a;
+  --color-ivory:#f8f4e8;
+  --color-gold:#c5a880;
+  --color-charcoal:#333333;
+  --font-serif:'Playfair Display',serif;
+  --font-sans:'Inter',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-sans);
+  color:var(--color-ivory);
+  background:var(--color-black);
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+img,video{max-width:100%;display:block;}
+section{position:relative;padding:4rem 2rem;}
+h1,h2,h3{font-family:var(--font-serif);margin:0;}
+p{line-height:1.6;}
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1rem 2rem;
+  font-family:var(--font-sans);
+  transition:background 0.4s;
+  z-index:1000;
+}
+nav.transparent{background:rgba(0,0,0,0);}
+nav.solid{background:rgba(0,0,0,0.85);}
+nav .logo{font-size:1.5rem;font-weight:600;letter-spacing:2px;}
+nav ul{display:flex;gap:1.5rem;list-style:none;align-items:center;}
+nav ul li a{font-weight:500;letter-spacing:1px;transition:color .3s;}
+nav ul li a:hover{color:var(--color-gold);}
+nav .cta{
+  padding:.5rem 1rem;
+  border:1px solid var(--color-gold);
+  border-radius:2px;
+  font-size:.9rem;
+  transition:background .3s,color .3s;
+}
+nav .cta:hover{
+  background:var(--color-gold);
+  color:#000;
+}
+.hero{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+}
+.hero video{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.8));
+}
+.hero .content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:0 2rem;
+}
+.hero .eyebrow{
+  font-size:.9rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;color:var(--color-gold);
+}
+.hero h1{
+  font-size:4rem;line-height:1.1;margin:0 0 .5rem;
+}
+.hero p{
+  font-size:1.2rem;max-width:600px;margin-bottom:2rem;
+}
+.hero .buttons{
+  display:flex;gap:1rem;
+}
+.hero .btn{
+  padding:.8rem 1.5rem;
+  border:1px solid var(--color-gold);
+  border-radius:2px;
+  font-weight:500;
+  transition:background .3s,color .3s;
+}
+.hero .btn:hover{
+  background:var(--color-gold);
+  color:#000;
+}
+.scroll-indicator{
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  width:30px;height:50px;
+  border:2px solid var(--color-ivory);
+  border-radius:25px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:8px;
+}
+.scroll-indicator::before{
+  content:"";
+  width:6px;height:6px;
+  background:var(--color-ivory);
+  border-radius:50%;
+  animation:scroll 2s infinite;
+}
+@keyframes scroll{
+  0%{transform:translateY(0);opacity:1;}
+  50%{transform:translateY(10px);opacity:.5;}
+  100%{transform:translateY(0);opacity:1;}
+}
+section.title{
+  text-align:center;
+  margin-bottom:3rem;
+}
+section.title h2{
+  font-size:2.5rem;
+  margin-bottom:.5rem;
+}
+section.title p{
+  font-size:1.1rem;
+  max-width:800px;
+  margin:auto;
+}
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:2rem;
+}
+.project{
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.project img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .8s ease;
+}
+.project:hover img{
+  transform:scale(1.05);
+}
+.project .info{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:2rem;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,0.7));
+  color:var(--color-ivory);
+}
+.project .info h3{
+  font-size:2rem;
+  margin:0;
+}
+.project .info span{
+  font-size:.9rem;
+  opacity:.8;
+}
+.studio{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:2rem;
+}
+.studio .text{
+  flex:1 1 300px;
+}
+.studio .text h2{
+  font-size:3rem;
+  margin-bottom:.5rem;
+}
+.studio .text p{
+  margin-top:1rem;
+}
+.studio .image{
+  flex:1 1 400px;
+}
+.material{
+  position:relative;
+  height:60vh;
+  overflow:hidden;
+}
+.material video{
+  width:100%;height:100%;
+  object-fit:cover;
+  animation:pan 30s linear infinite;
+}
+@keyframes pan{
+  from{transform:scale(1.2) translateX(0);}
+  to{transform:scale(1.2) translateX(-10%);}
+}
+.material .overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:var(--color-ivory);
+  font-size:2rem;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.experience{
+  overflow-x:auto;
+  white-space:nowrap;
+  scroll-snap-type:x mandatory;
+}
+.experience .slide{
+  display:inline-block;
+  width:100vw;
+  height:80vh;
+  scroll-snap-align:start;
+  position:relative;
+  background-size:cover;
+  background-position:center;
+}
+.experience .slide .label{
+  position:absolute;
+  bottom:2rem;
+  left:2rem;
+  font-size:2rem;
+  color:var(--color-ivory);
+}
+.journal{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:2rem;
+}
+.article{
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+}
+.article img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .6s ease;
+}
+.article:hover img{
+  transform:scale(1.07);
+}
+.article .caption{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:1.5rem;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,0.7));
+  color:var(--color-ivory);
+}
+.article .caption h3{
+  font-size:1.5rem;
+  margin:0;
+}
+.cta-section{
+  height:80vh;
+  background:var(--color-black);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:var(--color-ivory);
+}
+.cta-section h2{
+  font-size:3.5rem;
+  margin-bottom:1rem;
+}
+.cta-section .btn{
+  padding:.9rem 2rem;
+  border:1px solid var(--color-gold);
+  border-radius:2px;
+  font-weight:500;
+  transition:background .3s,color .3s;
+}
+.cta-section .btn:hover{
+  background:var(--color-gold);
+  color:#000;
+}
+footer{
+  padding:2rem;
+  text-align:center;
+  font-size:.9rem;
+  color:#777;
+}
+footer .social{
+  margin:1rem 0;
+}
+footer .social a{
+  margin:0 .5rem;
+  font-size:1.2rem;
+  color:#777;
+  transition:color .3s;
+}
+footer .social a:hover{
+  color:var(--color-gold);
+}
+.progress{
+  position:fixed;
+  top:0;left:0;
+  height:4px;
+  background:var(--color-gold);
+  width:0;
+  z-index:1001;
+}
+@media(max-width:768px){
+  .hero h1{font-size:2.8rem;}
+  .studio{flex-direction:column;}
+  .experience .slide{height:60vh;}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="transparent" id="navbar">
+  <div class="logo">NOIRÉ Studio</div>
+  <ul>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#studio">Studio</a></li>
+    <li><a href="#journal">Journal</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="cta">Start a Project</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="https://cdn.pixabay.com/vimeo/453850332/architecture-453850332.mp4?width=1280&hash=2c5c6c5c9c5e0e1c9c3c6c5c1c2c3c4c5c6c7c8c9.mp4" type="video/mp4">
+  </video>
+  <div class="content">
+    <div class="eyebrow">ARCHITECTURE / INTERIORS / 01</div>
+    <h1>Spaces With A Presence</h1>
+    <p>Architecture, interiors and environments shaped around light, material and emotion.</p>
+    <div class="buttons">
+      <a href="#projects" class="btn">Explore Projects</a>
+      <a href="#contact" class="btn">Start a Project</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"></div>
+</section>
+
+<section id="projects" class="title">
+  <h2>Featured Projects</h2>
+  <p>Curated selections of our most compelling works.</p>
+</section>
+<section class="projects">
+  <div class="project">
+    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Casa Nera">
+    <div class="info">
+      <h3>Casa Nera</h3>
+      <span>Dubai</span>
+    </div>
+  </div>
+  <div class="project">
+    <img src="https://images.unsplash.com/photo-1556912990-1b5a1e0c5c5b?auto=format&fit=crop&w=800&q=80" alt="Villa Serein">
+    <div class="info">
+      <h3>Villa Serein</h3>
+      <span>Geneva</span>
+    </div>
+  </div>
+  <div class="project">
+    <img src="https://images.unsplash.com/photo-1560185127-6a2e5d9c5c5c?auto=format&fit=crop&w=800&q=80" alt="Atelier 08">
+    <div class="info">
+      <h3>Atelier 08</h3>
+      <span>London</span>
+    </div>
+  </div>
+</section>
+
+<section id="studio" class="studio">
+  <div class="text">
+    <h2>We design the feeling before the form</h2>
+    <p>Our process begins with an intimate understanding of light, material, and emotion. Every line, texture, and shadow is orchestrated to evoke a timeless atmosphere.</p>
+  </div>
+  <div class="image">
+    <img src="https://images.unsplash.com/photo-1526401485004-2c8c8d8c8c8c?auto=format&fit=crop&w=1200&q=80" alt="Studio image">
+  </div>
+</section>
+
+<section class="material">
+  <video autoplay muted loop playsinline>
+    <source src="https://cdn.pixabay.com/vimeo/453850332/architecture-453850332.mp4?width=1280&hash=2c5c6c5c9c5e0e1c9c3c6c5c1c2c3c4c5c6c7c8c9.mp4" type="video/mp4">
+  </video>
+  <div class="overlay">STONE / OAK / BRONZE / GLASS</div>
+</section>
+
+<section class="experience">
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80');">
+    <div class="label">ARRIVAL</div>
+  </div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1505842465776-3c5c9c5c5c5c?auto=format&fit=crop&w=1200&q=80');">
+    <div class="label">LIGHT</div>
+  </div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1486401899868-0c5c5c5c5c5c?auto=format&fit=crop&w=1200&q=80');">
+    <div class="label">MATERIAL</div>
+  </div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1526401485004-2c8c8d8c8c8c?auto=format&fit=crop&w=1200&q=80');">
+    <div class="label">SILENCE</div>
+  </div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=1200&q=80');">
+    <div class="label">VIEW</div>
+  </div>
+</section>
+
+<section id="journal" class="title">
+  <h2>Journal</h2>
+  <p>Thoughts, essays, and visual explorations.</p>
+</section>
+<section class="journal">
+  <div class="article">
+    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Article 1">
+    <div class="caption"><h3>Material Alchemy</h3></div>
+  </div>
+  <div class="article">
+    <img src="https://images.unsplash.com/photo-1556912990-1b5a1e0c5c5b?auto=format&fit=crop&w=800&q=80" alt="Article 2">
+    <div class="caption"><h3>Light & Shadow</h3></div>
+  </div>
+  <div class="article">
+    <img src="https://images.unsplash.com/photo-1526401485004-2c8c8d8c8c8c?auto=format&fit=crop&w=800&q=80" alt="Article 3">
+    <div class="caption"><h3>Spatial Poetry</h3></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Let’s create something unforgettable.</h2>
+  <a href="#contact" class="btn">Start a Project</a>
+</section>
+
+<footer id="contact">
+  <div class="logo">NOIRÉ Studio</div>
+  <div class="social">
+    <a href="#" aria-label="Instagram">✦</a>
+    <a href="#" aria-label="LinkedIn">✦</a>
+    <a href="#" aria-label="Twitter">✦</a>
+  </div>
+  <div>© 2026 NOIRÉ Studio. All rights reserved.</div>
+</footer>
+
+<script>
+  // Navbar background change on scroll
+  const navbar = document.getElementById('navbar');
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 80) {
+      navbar.classList.remove('transparent');
+      navbar.classList.add('solid');
+    } else {
+      navbar.classList.remove('solid');
+      navbar.classList.add('transparent');
+    }
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrolled = (scrollY / docHeight) * 100;
+    progress.style.width = scrolled + '%';
+  });
+
+  // IntersectionObserver for fade/slide reveals
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1});
+
+  document.querySelectorAll('section, .project, .article, .slide').forEach(el => {
+    el.classList.add('preload');
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
