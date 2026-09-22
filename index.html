@@ -75,13 +75,21 @@ img,video{display:block;width:100%}
 .project:nth-of-type(3){width:83%;margin-left:4%}
 .project:nth-of-type(3) .project-image{height:min(58vw,610px)}
 .material{background:#090909;color:#fff;padding:0 4vw;min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden}
-.material-media{width:58%;height:75vh;overflow:hidden}
+.material:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 50%,rgba(255,255,255,.07),transparent 32%);pointer-events:none}
+.material:after{content:"02";position:absolute;right:4vw;top:50%;font-size:clamp(120px,24vw,360px);line-height:1;font-weight:600;letter-spacing:-.08em;color:rgba(255,255,255,.035);transform:translateY(-50%);pointer-events:none}
+.material-media{width:58%;height:75vh;overflow:hidden;position:relative;z-index:1}
+.material-media:after{content:"MATERIAL / MOTION";position:absolute;left:18px;bottom:18px;font-size:9px;letter-spacing:.18em;color:#fff;opacity:.75;z-index:2}
 .material-media video{height:100%;object-fit:cover;filter:contrast(1.08) brightness(.72);transition:transform 1.2s ease}
-.material:hover .material-media video{transform:scale(1.035)}
-.material-copy{padding-left:7vw;position:relative;z-index:2}
+.material:hover .material-media video{transform:scale(1.06)}
+.material-media video{will-change:transform}
+.material-copy{padding-left:7vw;position:relative;z-index:2;mix-blend-mode:normal}
+.material-copy h2{transform:translateX(0);transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.material.show .material-copy h2{transform:translateX(-1.5vw)}
 .material-copy .small{color:#999}
 .material-copy h2{font-size:clamp(58px,10vw,150px);line-height:.8;letter-spacing:-.08em;font-weight:500;margin-top:25px}
 .material-copy h2 span{font-family:var(--serif);font-style:italic;font-weight:400}
+.material-copy .small{transition:letter-spacing .8s ease}
+.material.show .material-copy .small{letter-spacing:.28em}
 .marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;background:var(--paper)}
 .marquee-track{display:inline-block;animation:marquee 24s linear infinite;font-size:clamp(42px,7vw,100px);letter-spacing:-.06em}
 .marquee-track span{font-family:var(--serif);font-style:italic}
@@ -122,7 +130,7 @@ img,video{display:block;width:100%}
  .hero{min-height:680px}.hero-content{padding:0 18px 32px}.hero-title{font-size:21vw;line-height:.78;white-space:normal;max-width:100%}.hero-bottom{margin-top:28px;gap:20px}.hero-bottom p{font-size:11px;max-width:240px}.scroll{display:none}
  .intro{min-height:auto;padding:110px 20px;display:block}.intro .small{margin-bottom:55px}.intro h2{font-size:54px;margin-bottom:55px}.intro-copy{font-size:27px}
  .projects{padding:25px 18px 80px}.section-head{margin-bottom:55px}.project,.project:nth-of-type(2),.project:nth-of-type(3){width:100%;margin:0 0 90px}.project-image,.project:nth-of-type(2) .project-image,.project:nth-of-type(3) .project-image{height:110vw;max-height:none}.project-meta{gap:15px}.project-name{font-size:38px}
- .material{padding:70px 18px;display:block;min-height:auto}.material-media{width:100%;height:105vw;margin-bottom:55px}.material-copy{padding:0}.material-copy h2{font-size:20vw}
+ .material{padding:70px 18px;display:block;min-height:auto}.material-media{width:100%;height:105vw;margin-bottom:55px}.material-copy{padding:0}.material-copy h2{font-size:20vw}.material:after{right:18px;font-size:34vw}.material-media:after{left:12px;bottom:12px}
  .marquee-track{font-size:52px}.studio{padding:100px 20px;display:block}.studio h2{font-size:58px}.studio-right{padding-top:70px}.studio-right p{font-size:28px}.studio-right p+p{margin-top:55px;font-size:13px}
  .journal{padding:30px 18px 90px}.journal-grid{display:block}.article img,.article.small-article img{height:105vw;max-height:none}.article-title{font-size:31px}
  .contact{min-height:75vh;padding:70px 18px}.contact h2{font-size:22vw}.contact-bottom{margin-top:80px;display:block}.contact-bottom a{display:inline-block;margin-top:25px}.footer{padding:20px 18px;gap:15px;flex-wrap:wrap}
