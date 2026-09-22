@@ -27,7 +27,7 @@ img,video{display:block;width:100%}
 .menu{display:none;border:0;background:none;color:inherit;font-size:24px}
 .hero{height:100svh;min-height:680px;background:#080808;color:#fff;position:relative;overflow:hidden;display:flex;align-items:flex-end}
 .hero-media{position:absolute;inset:0;overflow:hidden}
-.hero-media video{height:100%;object-fit:cover;opacity:.68;filter:grayscale(.25) contrast(1.08);transform:scale(1.04);animation:drift 16s ease-in-out infinite alternate}
+.hero-media video{height:100%;object-fit:cover;opacity:.68;filter:grayscale(.25) contrast(1.08);transform:scale(1.04);animation:drift 16s ease-in-out infinite alternate;will-change:transform}
 .hero-media:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.68))}
 @keyframes drift{to{transform:scale(1.1) translate3d(-1.5%,-1%,0)}}
 .hero-content{position:relative;z-index:2;width:100%;padding:0 4vw 6vh}
@@ -51,6 +51,9 @@ img,video{display:block;width:100%}
 .project-image{height:min(74vw,760px);overflow:hidden;background:#ddd}
 .project-image img{height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1);filter:saturate(.82)}
 .project:hover .project-image img{transform:scale(1.045)}
+.project-image{position:relative}
+.project-image:after{content:"VIEW PROJECT ↗";position:absolute;right:22px;bottom:20px;color:#fff;background:rgba(0,0,0,.72);padding:10px 13px;font-size:9px;letter-spacing:.15em;opacity:0;transform:translateY(10px);transition:opacity .35s ease,transform .35s ease}
+.project:hover .project-image:after{opacity:1;transform:none}
 .project-meta{display:flex;justify-content:space-between;align-items:flex-start;margin-top:17px}
 .project-name{font-size:clamp(30px,5vw,72px);letter-spacing:-.055em;font-weight:500;line-height:.95}
 .project-no{font-size:11px;letter-spacing:.14em;color:#777}
@@ -89,12 +92,21 @@ img,video{display:block;width:100%}
 .contact h2{font-size:clamp(70px,13vw,190px);line-height:.72;letter-spacing:-.09em;font-weight:500;max-width:1200px}
 .contact h2 em{font-family:var(--serif);font-weight:400}
 .contact-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:100px}
-.contact-bottom a{font-size:14px;border-bottom:1px solid #fff;padding-bottom:8px}
+.contact-bottom a{font-size:14px;border-bottom:1px solid #fff;padding-bottom:8px;position:relative;overflow:hidden}
+.contact-bottom a:after{content:"";position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:#fff;transform:translateX(-102%);transition:transform .45s ease}
+.contact-bottom a:hover:after{transform:none}
 .footer{padding:25px 4vw;display:flex;justify-content:space-between;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#777}
 .reveal{opacity:0;transform:translateY(55px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
 .reveal.show{opacity:1;transform:none}
+[data-split]{overflow:hidden}
+[data-split] .word{display:inline-block;transform:translateY(110%);opacity:0;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .7s ease}
+.reveal.show[data-split] .word{transform:none;opacity:1}
+.magnetic{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.nav.scrolled{background:rgba(9,9,9,.08);backdrop-filter:blur(12px)}
 @media(max-width:800px){
- .cursor{display:none}.nav{height:65px;padding:0 18px}.navlinks{display:none}.menu{display:block}
+ .cursor{display:none}
+ .project-image:after{opacity:1;transform:none;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.72));right:12px;bottom:12px;padding:8px 10px}
+ .navlinks{max-width:calc(100vw - 36px)}.nav{height:65px;padding:0 18px}.navlinks{display:none}.menu{display:block}
  .hero{min-height:680px}.hero-content{padding:0 18px 32px}.hero-title{font-size:21vw;line-height:.78;white-space:normal;max-width:100%}.hero-bottom{margin-top:28px;gap:20px}.hero-bottom p{font-size:11px;max-width:240px}.scroll{display:none}
  .intro{min-height:auto;padding:110px 20px;display:block}.intro .small{margin-bottom:55px}.intro h2{font-size:54px;margin-bottom:55px}.intro-copy{font-size:27px}
  .projects{padding:25px 18px 80px}.section-head{margin-bottom:55px}.project,.project:nth-of-type(2),.project:nth-of-type(3){width:100%;margin:0 0 90px}.project-image,.project:nth-of-type(2) .project-image,.project:nth-of-type(3) .project-image{height:110vw;max-height:none}.project-meta{gap:15px}.project-name{font-size:38px}
@@ -122,14 +134,14 @@ img,video{display:block;width:100%}
   <div class="hero-media"><video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1800&q=85"><source src="https://raw.githubusercontent.com/zaidsheikh668-lang/Verona/main/56303003_1790016584141836.mp4" type="video/mp4"></video></div>
   <div class="hero-content">
     <div class="kicker">Independent creative studio / 2026</div>
-    <h1 class="hero-title">NOIRÉ</h1>
+    <h1 class="hero-title" data-split>NOIRÉ</h1>
     <div class="hero-bottom"><p>Architecture, interiors and digital experiences made to be felt before they are understood.</p><div class="scroll"><i></i>Scroll to explore</div></div>
   </div>
 </section>
 
 <section class="intro reveal">
   <div class="small">01 / Point of view</div>
-  <div><h2>We don't design <em>rooms.</em><br>We design atmosphere.</h2><p class="intro-copy">A quieter approach to architecture — <span>less decoration, more emotion. Every space starts with light, proportion and a reason to exist.</span></p></div>
+  <div><h2 data-split>We don't design <em>rooms.</em><br>We design atmosphere.</h2><p class="intro-copy">A quieter approach to architecture — <span>less decoration, more emotion. Every space starts with light, proportion and a reason to exist.</span></p></div>
 </section>
 
 <section class="projects" id="work">
@@ -147,7 +159,7 @@ img,video{display:block;width:100%}
 <div class="marquee"><div class="marquee-track">LIGHT / SPACE / MATERIAL / <span>EMOTION</span> / LIGHT / SPACE / MATERIAL / <span>EMOTION</span> / </div></div>
 
 <section class="studio reveal" id="studio">
-  <div><div class="small">03 / The studio</div><h2>Quiet<br>ideas.<br><em>Strong</em><br>spaces.</h2></div>
+  <div><div class="small">03 / The studio</div><h2 data-split>Quiet<br>ideas.<br><em>Strong</em><br>spaces.</h2></div>
   <div class="studio-right"><p>NOIRÉ is a fictional independent studio exploring the edge between architecture, art direction and digital culture.</p><p>We work across residences, hospitality and visual identities — building a distinct world around every project instead of repeating a formula.</p></div>
 </section>
 
@@ -164,7 +176,7 @@ img,video{display:block;width:100%}
 
 <section class="contact" id="contact">
   <div class="small" style="color:#888">04 / Start a conversation</div>
-  <h2>Make<br>something<br><em>memorable.</em></h2>
+  <h2 data-split>Make<br>something<br><em>memorable.</em></h2>
   <div class="contact-bottom"><div class="small" style="color:#888">NOIRÉ STUDIO / WORLDWIDE</div><a href="mailto:hello@noire-studio.example">hello@noire-studio.example ↗</a></div>
 </section>
 </main>
@@ -174,14 +186,72 @@ img,video{display:block;width:100%}
 <script>
 const progress=document.getElementById('progress');
 const cursor=document.getElementById('cursor');
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=(scrollY/h*100)+'%';},{passive:true});
+const nav=document.querySelector('.nav');
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  progress.style.width=(scrollY/Math.max(h,1)*100)+'%';
+  nav.classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+
 if(matchMedia('(pointer:fine)').matches){
- addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
- document.querySelectorAll('a,.project,.article').forEach(el=>{el.addEventListener('mouseenter',()=>cursor.classList.add('big'));el.addEventListener('mouseleave',()=>cursor.classList.remove('big'))});
+  addEventListener('pointermove',e=>{
+    cursor.style.left=e.clientX+'px';
+    cursor.style.top=e.clientY+'px';
+    document.querySelectorAll('.magnetic').forEach(el=>{
+      const r=el.getBoundingClientRect();
+      const dx=(e.clientX-(r.left+r.width/2))*.12;
+      const dy=(e.clientY-(r.top+r.height/2))*.12;
+      el.style.transform='translate('+dx+'px,'+dy+'px)';
+    });
+  });
+  document.querySelectorAll('a,.project,.article').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+  });
 }
-const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.12});
+
+document.querySelectorAll('[data-split]').forEach(el=>{
+  const parts=el.innerHTML.split(/(\s+|<br>)/);
+  el.innerHTML=parts.map((part,i)=>{
+    if(part.includes('<br>')) return part;
+    if(/^\s+$/.test(part)) return part;
+    return '<span class="word" style="transition-delay:'+Math.min(i*.035,.35)+'s">'+part+'</span>';
+  }).join('');
+});
+
+const observer=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    e.target.classList.add('show');
+    observer.unobserve(e.target);
+  }
+}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
-document.getElementById('menu').addEventListener('click',()=>{document.querySelector('.navlinks').style.display=document.querySelector('.navlinks').style.display==='flex'?'none':'flex';document.querySelector('.navlinks').style.position='absolute';document.querySelector('.navlinks').style.right='18px';document.querySelector('.navlinks').style.top='60px';document.querySelector('.navlinks').style.flexDirection='column';document.querySelector('.navlinks').style.background='#090909';document.querySelector('.navlinks').style.padding='20px'});
+
+document.querySelectorAll('.project,.article').forEach(el=>{
+  el.addEventListener('pointermove',e=>{
+    if(!matchMedia('(pointer:fine)').matches)return;
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform='translate3d('+x*6+'px,'+y*6+'px,0)';
+  });
+  el.addEventListener('pointerleave',()=>el.style.transform='');
+});
+
+document.querySelectorAll('.contact-bottom a').forEach(el=>el.classList.add('magnetic'));
+
+document.getElementById('menu').addEventListener('click',()=>{
+  const links=document.querySelector('.navlinks');
+  const open=links.style.display==='flex';
+  links.style.display=open?'none':'flex';
+  links.style.position='absolute';
+  links.style.right='18px';
+  links.style.top='60px';
+  links.style.flexDirection='column';
+  links.style.background='#090909';
+  links.style.padding='20px';
+});
 </script>
 </body>
 </html>
