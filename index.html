@@ -117,7 +117,17 @@ img,video{display:block;width:100%}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
-</head>
+<style>
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+*,*::before,*::after{box-sizing:border-box}
+img,video,iframe{max-width:100%}
+.project,.article,.project-image,.hero,.hero-media,.materiality,.studio,.journal,.contact{max-width:100vw}
+@media(max-width:800px){
+  .navlinks{max-width:calc(100vw - 36px);right:18px!important}
+  .hero-title{font-size:clamp(64px,22vw,150px);white-space:nowrap}
+  .marquee{max-width:100vw;overflow:hidden}
+}
+</style></head>
 <body>
 <div class="progress" id="progress"></div><div class="cursor" id="cursor"></div>
 
